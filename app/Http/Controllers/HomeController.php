@@ -3,7 +3,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
-// use App\User;
+use Illuminate\Support\Facades\DB;
+use App\Ticket;
 
 class HomeController extends Controller{
     private $user;
@@ -13,10 +14,22 @@ class HomeController extends Controller{
     }
 
     public function index(){
-        // $user = new User();
-        // $name =$this->user->getName('Adekunle');
-        $name = \App::getCachedServicesPath();
-        return view('home', compact('name'));
+        $tickets = Ticket::with('comments')->where('state_id', 1)->get();  
+        foreach($tickets as $ticket){
+            var_dump($ticket->title);
+            echo "<ul>";
+            foreach($ticket->comments as $comment){
+                echo "<li>$comment->message)</li>";
+            }
+            echo "</ul>";
+        }
+        // return view('home', compact('$ticket'));
+    }
+
+    public function show($id){
+        $ticket = Ticket::with('comments')->where('id',$id)->firstOrFail();
+        dd($ticket, count($ticket->comments));
+
     }
 
 }
