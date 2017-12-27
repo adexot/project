@@ -13,23 +13,50 @@ class HomeController extends Controller{
         $this->user = $user;
     }
 
+    public function home(){
+        return view('admin.dashboard');
+    }
+
     public function index(){
-        $tickets = Ticket::with('comments')->where('state_id', 1)->get();  
-        foreach($tickets as $ticket){
-            var_dump($ticket->title);
-            echo "<ul>";
-            foreach($ticket->comments as $comment){
-                echo "<li>$comment->message)</li>";
-            }
-            echo "</ul>";
-        }
-        // return view('home', compact('$ticket'));
+        $tickets = Ticket::all();  
+        // dd($tickets);
+        return view('admin.dashboard', compact('tickets'));
     }
 
     public function show($id){
         $ticket = Ticket::with('comments')->where('id',$id)->firstOrFail();
-        dd($ticket, count($ticket->comments));
+        $body = $ticket->comments->first();
+        return view('admin.show', compact('ticket', 'body'));
+    }
 
+    public function pending(){
+        $ticket = Ticket::with('comments')->where('state_id',1)->get();
+        return view('admin.show', compact('ticket'));
+    }
+
+    public function closed(){
+        $ticket = Ticket::with('comments')->where('state_id',3)->get();
+        return view('admin.show', compact('ticket'));
+    }
+
+    public function opened(){
+        $ticket = Ticket::with('comments')->where('state_id',2)->get();
+        return view('admin.show', compact('ticket'));
+    }
+
+    public function front () 
+    {
+        return view('client.front');
+    }
+
+    public function new () 
+    {
+        return view('client.new_ticket');
+    }
+
+    public function existing () 
+    {
+        return view('client.existing_ticket');
     }
 
 }

@@ -1,0 +1,97 @@
+/* utility style */
+.m-t-20{
+    margin-top: 20px;
+}
+.m-b-20{
+    margin-bottom: 20px;
+}
+.bordered{
+    border: 1px solid #999;
+}
+.bg-gray{
+    background-color: #fafafa;
+}
+.bg-white{
+    background-color: #fff;
+}
+.bg-blue{
+    background-color: #009aba;
+}
+.text-gray{
+    color: #828282;
+}
+.padding-50{
+    padding: 50px;
+}
+.container{
+    max-width: 1000px;
+}
+/* Client Frontpage style */
+*{
+    box-sizing: border-box;
+}
+nav{
+    width: 100%;
+    line-height: 100px;
+    vertical-align: middle; 
+    overflow-y: hidden;
+}
+.client-nav{
+    height: 150px;
+}
+.brand{
+    font-size: 20px;
+}
+.search-box{
+    width: 100%;
+    height: 100px;
+}
+.search-form{
+    width: 80%;
+    margin: -40px auto 0;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.search-input{
+    width: 80%;
+    max-width: 80%;
+    height: 50px;
+    padding: 0 20px;
+    border: 1px solid #009aba;
+}
+.search-button{
+    height: 50px;
+    padding: 0 20px;
+    background-color: #009aba;
+    color: #fff;
+    border: 1px;
+}
+.front-container{
+    padding: 100px 0;
+}
+.box{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    border: 1px solid #009aba;
+    border-radius: 5px;
+}
+
+.ticket-box{
+    margin-top: -20px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    min-height: 500px;
+}
+
+.ticket-form{
+    width: 600px;
+    margin: 50px auto;
+}
+
+.ticket-form .form-control{
+    width: 100%;
+    border-radius: 0;
+}
