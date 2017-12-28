@@ -69,6 +69,10 @@
 					</div>
 				</div>
 
+				{{ csrf_field() }}
+				<div class="col-md-12 m-t-20 form-group pull-right">
+					<button type="submit" class="btn btn-primary pull-right" name="button">Submit Ticket</button>
+				</div>
 			</form>
 		</div>
 	</div>
