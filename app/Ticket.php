@@ -6,17 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ticket extends Model
 {
-    //
 
-    public function comments(){
+    public function comments()
+    {
         return $this->hasMany(\App\Comment::class);
     }
 
-    public function users(){
-        return $this->hasOne(\App\User::class);
+    public function user()
+    {
+        return $this->hasOne(\App\TicketUser::class);
     }
 
-    public function response(){
+    public function responses()
+    {
         return $this->hasMany(\App\response::class);
     }
 }
