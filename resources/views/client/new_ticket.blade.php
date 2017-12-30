@@ -8,7 +8,7 @@
 						<label for="">Owner</label>
 					</div>
 					<div class="col-md-9">
-						<input type="text" name="" class="form-control" id="">
+						<input type="text" name="owner" class="form-control" id="">
 					</div>
 				</div>
 				<div class="form-group col-md-12 m-t-20">
@@ -16,7 +16,7 @@
 						<label for="">Email</label>
 					</div>
 					<div class="col-md-9">
-						<input type="text" name="" class="form-control" id="">
+						<input type="text" name="email" class="form-control" id="">
 					</div>
 				</div>
 				<div class="form-group col-md-12 m-t-20">
@@ -24,7 +24,7 @@
 						<label for="">Mobile</label>
 					</div>
 					<div class="col-md-9">
-						<input type="tel" name="" class="form-control" id="">
+						<input type="tel" name="phone" class="form-control" id="">
 					</div>
 				</div>
 				<div class="form-group col-md-12 m-t-20">
@@ -32,7 +32,7 @@
 						<label for="">Title</label>
 					</div>
 					<div class="col-md-9">
-						<input type="text" name="" class="form-control" id="">
+						<input type="text" name="title" class="form-control" id="">
 					</div>
 				</div>
 				<div class="form-group col-md-12 m-t-20">
@@ -40,7 +40,7 @@
 						<label for="">category</label>
 					</div>
 					<div class="col-md-5">
-						<select name="" id="" class="form-control">
+						<select name="category" id="" class="form-control">
 							<option value="">select an option</option>
 							<option value="">Payment</option>
 							<option value="">ID card</option>
@@ -49,10 +49,10 @@
 				</div>
 				<div class="form-group col-md-12 m-t-20">
 					<div class="col-md-3">
-						<label for="">Priority</label>
+						<label for="priority">Priority</label>
 					</div>
 					<div class="col-md-5">
-						<select name="" id="" class="form-control">
+						<select name="priority" id="" class="form-control">
 							<option value="">select an option</option>
 							<option value="">high</option>
 							<option value="">medium</option>
@@ -65,7 +65,7 @@
 						<label for="">Description</label>
 					</div>
 					<div class="col-md-9">
-						<textarea name="" id="" class="form-control"></textarea>
+						<textarea name="description" id="" class="form-control"></textarea>
 					</div>
 				</div>
 
