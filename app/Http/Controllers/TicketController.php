@@ -15,5 +15,6 @@ class TicketController extends Controller
     public function addTicket(Request $request)
     {
       $ticket = $this->ticket->addNew($request->all());
+      return redirect('/ticket/'.$ticket->unique_id);
     }
 }

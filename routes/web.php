@@ -1,13 +1,18 @@
 <?php
 
 // Admin routes
-Route::get('/admin', 'HomeController@index');
-Route::get('/show/{id}', 'HomeController@show');
+Route::get('/admin', 'AdminController@index');
+Route::get('/show/{id}', 'AdminController@show');
 
 
 // Client routes
-Route::get('/', 'HomeController@front');
-Route::get('/front', 'HomeController@front');
-Route::get('/new', 'HomeController@new');
+Route::get('/', 'ExternalPagesController@front');
+Route::get('/front', 'ExternalPagesController@front');
+Route::get('/new', 'ExternalPagesController@new');
 Route::post('/new', 'TicketController@addTicket');
-Route::get('/existing', 'HomeController@existing');
+Route::get('/existing', 'ExternalPagesController@existing');
+Route::get('/ticket/{id}', 'ExternalPagesController@getTicket');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

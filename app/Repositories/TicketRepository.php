@@ -2,7 +2,10 @@
 namespace App\Repositories;
 
 use App\Ticket;
-use App\Repository\TicketUserRepository;
+use App\Category;
+use App\Repositories\TicketUserRepository;
+use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
+use Ramsey\Uuid\Uuid;
 
 class TicketRepository {
   public function addNew($data)
@@ -10,7 +13,7 @@ class TicketRepository {
     // We create the TicketUser first
     $user_data = [
       'email' => $data['email'],
-      'name' => $data['name'],
+      'name' => $data['owner'],
       'phone' => $data['phone'],
     ];
 
@@ -18,17 +21,40 @@ class TicketRepository {
     $user = $userRepo->addUser($user_data);
 
     // Get the category
-    $category = Category::find($data['category_id']);
+    $category = Category::find($data['category']);
     $ticket_data = [
-      'unique_id' => str_random(36),
+      'user_id' => $user->id,
+      'unique_id' => $this->genUuid(),
       'title' => $data['title'],
       'status' => 'pending',
       'priority' => $data['priority'],
       'description' => $data['description'],
       'category_id' => isset($category->id) ? $category->id : 0,
     ];
-
     // We create the Ticket
     return Ticket::create($ticket_data);
+  }
+
+  public function getTicketByUniqueId($unique_id)
+  {
+    $ticket = Ticket::with('comments')->where('unique_id',$unique_id)->firstOrFail();
+    return $ticket;
+  }
+
+  public function getAllInfo()
+  {
+    $data['tickets'] = Ticket::where('status', 'pending')->get();
+    $data['pending'] = Ticket::where('status', 'pending')->count();
+    $data['opened'] = Ticket::where('status', 'opened')->count();
+    $data['closed'] = Ticket::where('status', 'closed')->count();
+
+    return $data;
+  }
+
+
+
+  private function genUuid($length = 36)
+  {
+      return $uuid = Uuid::uuid5(Uuid::NAMESPACE_DNS, str_random(5));
   }
 }

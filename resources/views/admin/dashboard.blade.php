@@ -15,7 +15,7 @@
 					<div class="card__content">
 						<div class="card__align">
 							<div class="card__big-text">
-								5
+								{{ $pending }}
 							</div>
 						</div>
 					</div>
@@ -33,7 +33,7 @@
 					<div class="card__content">
 						<div class="card__align">
 							<div class="card__big-text">
-								12
+								{{ $opened }}
 							</div>
 						</div>
 					</div>
@@ -51,7 +51,7 @@
 					<div class="card__content">
 						<div class="card__align">
 							<div class="card__big-text">
-								50
+								{{ $closed }}
 							</div>
 						</div>
 					</div>
@@ -78,8 +78,8 @@
 									<th class="table__sort--asc" sortable="true">#</th>
 									<th class="table__sort--desc" sortable="true">Tracking-ID</th>
 									<th>Title</th>
-									<th>Status</th> 
-                                    <th>Updated</th>
+									<th>Status</th>
+                  <th>Created</th>
 									<th>Action</th>
 								</tr>
 							</thead>
@@ -89,10 +89,10 @@
 									<td>{{$ticket->id}}</td>
                                     <td>{{$ticket->unique_id}}</td>
 									<td>{{$ticket->title}}</td>
-                                    <td>{{$ticket->state_id}}</td>
+                                    <td>{{$ticket->status}}</td>
 									<td>{{$ticket->created_at}}</td>
 									<td>
-										<a href="javascript:void(0)" class="button button--green">view</a>
+										<a href="/show/{{ $ticket->unique_id }}" class="button button--green">view</a>
 									</td>
 								</tr>
                                 @endforeach
@@ -130,7 +130,7 @@
 
 			</div>
 
-			
+
 
 		</div>
 

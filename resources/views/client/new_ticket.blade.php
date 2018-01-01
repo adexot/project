@@ -42,8 +42,9 @@
 					<div class="col-md-5">
 						<select name="category" id="" class="form-control">
 							<option value="">select an option</option>
-							<option value="">Payment</option>
-							<option value="">ID card</option>
+							@foreach ($categories as $key => $category)
+								<option value="{{ $category->id }}">{{ $category->category_name }}</option>
+							@endforeach
 						</select>
 					</div>
 				</div>
@@ -54,9 +55,9 @@
 					<div class="col-md-5">
 						<select name="priority" id="" class="form-control">
 							<option value="">select an option</option>
-							<option value="">high</option>
-							<option value="">medium</option>
-							<option value="">low</option>
+							<option value="high">high</option>
+							<option value="medium">medium</option>
+							<option value="low">low</option>
 						</select>
 					</div>
 				</div>

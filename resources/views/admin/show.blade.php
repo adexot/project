@@ -6,7 +6,7 @@
 			<div class="grid__col-12 card__wrapper">
 				<div class="card card--gray">
 					<div class="card__header">
-						<div class="card__title">{{$ticket->title}}</div>
+						<div class="card__title">{{ $ticket->title }}</div>
 						<div class="card__tools">
 							<i class="fa fa-external-link"></i>
 						</div>
@@ -19,19 +19,19 @@
 									<tbody>
 										<tr>
 											<td>Tracking ID</td>
-											<td>153645373672</td>
+											<td>{{ $ticket->unique_id }}</td>
 										</tr>
 										<tr>
 											<td>Created on</td>
-											<td></td>
+											<td>{{ $ticket->created_at }}</td>
 										</tr>
 										<tr>
-											<td>Ticket status</td>
-											<td></td>
+											<td>Ticket status:</td>
+											<td>{{ ucfirst($ticket->status) }}</td>
 										</tr>
 										<tr>
-											<td>Updated</td>
-											<td></td>
+											<td>Updated:</td>
+											<td>{{ $ticket->updated_at }}</td>
 										</tr>
 									</tbody>
 								</table>
@@ -40,20 +40,20 @@
 								<table class="">
 									<tbody>
 										<tr>
-											<td>Category</td>
-											<td></td>
+											<td>Category:</td>
+											<td>{{ ucfirst($ticket->category->category_name) }}</td>
 										</tr>
 										<tr>
-											<td>Replies</td>
-											<td></td>
+											<td>Replies:</td>
+											<td>{{ count($ticket->comments) }}</td>
 										</tr>
 										<tr>
-											<td>Priority</td>
-											<td></td>
+											<td>Priority:</td>
+											<td>{{ ucfirst($ticket->priority) }}</td>
 										</tr>
 										<tr>
 											<td>Owner</td>
-											<td></td>
+											<td>{{ ucfirst($ticket->user->name) }}</td>
 										</tr>
 									</tbody>
 								</table>
