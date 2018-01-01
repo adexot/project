@@ -35,8 +35,25 @@ class AdminController extends Controller
     public function show($unique_id)
     {
         $data['ticket'] = $this->ticket->getTicketByUniqueId($unique_id);
-        //$ticket = Ticket::with('comments')->where('unique_id',$id)->firstOrFail();
-        //$body = $ticket->comments->first();
-        return view('admin.show', $data); //compact('ticket', 'body'));
+        return view('admin.show', $data);
+    }
+
+
+    public function pending()
+    {
+        $ticket = Ticket::with('comments')->where('state_id',1)->get();
+        return view('admin.show', compact('ticket'));
+    }
+
+    public function closed()
+    {
+        $ticket = Ticket::with('comments')->where('state_id',3)->get();
+        return view('admin.show', compact('ticket'));
+    }
+
+    public function opened()
+    {
+        $ticket = Ticket::with('comments')->where('state_id',2)->get();
+        return view('admin.show', compact('ticket'));
     }
 }
