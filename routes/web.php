@@ -3,6 +3,7 @@
 // Admin routes
 Route::get('/admin', 'AdminController@index');
 Route::get('/show/{id}', 'AdminController@show');
+Route::post('/show/{id}', 'AdminController@addComment');
 
 
 // Client routes

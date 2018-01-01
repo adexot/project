@@ -58,64 +58,64 @@
 									</tbody>
 								</table>
 							</div>
-
-
 						</div>
 					</div>
-				</div>
+				</div> <br/></br/>
+				<div class="card__title"> Comments</div>
+				@forelse ($ticket->comments as $key => $comment)
+					<div class="card bordered m-t-20">
+						<div class="card__header">
+							<table class="">
+								<tbody>
+									<tr>
+										<td>Date added: </td>
+										<td>{{ $comment->created_at }}</td>
+									</tr>
+									<!--<tr>
+										<td>Owner: </td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>Ticket status: </td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>IP address:</td>
+										<td></td>
+									</tr>-->
+								</tbody>
+							</table>
+						</div>
+						<div class="card__content">
+							{{ $comment->message }}
+						</div>
+					</div>
 
-				<div class="card bordered m-t-20">
-					<div class="card__header">
-						<table class="">
-							<tbody>
-								<tr>
-									<td>Date: </td>
-									<td>13/12/2017</td>
-								</tr>
-								<tr>
-									<td>Owner: </td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>Ticket status: </td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>IP address:</td>
-									<td></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<div class="card__content">
-						Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
-						and scrambled it to make a type specimen book.
-					</div>
-				</div>
+				@empty
+					<p>No comments added yet.</p>
+				@endforelse
 			</div>
-
 			<div class="grid__col-12 card__wrapper">
 				<div class="card card--gray">
 					<div class="card__header">
-						<div class="card__title">Create Ticket</div>
+						<div class="card__title">Add Response</div>
 					</div>
 					<div class="card__content">
 
 
-						<form class="form">
-
-							<input class="textfield textfield--shadow" placeholder="Tickets Title" />
-							<textarea class="textfield textfield--shadow" id="textarea-1" rows="3" placeholder="Tickets Description"></textarea>
-							<div class="form__group">
+						<form class="form" action="">
+							{{ csrf_field() }}
+							<!--<input class="textfield textfield--shadow" placeholder="Tickets Title" />-->
+							<textarea class="textfield textfield--shadow" id="textarea-1" rows="3" placeholder="Ticket Response"></textarea>
+							<!--<div class="form__group">
 								<input class="textfield textfield--shadow" placeholder="Email Assignee" />
 								<div class="form__icon form__icon--radius-right">
 									@something.com
 								</div>
-							</div>
+							</div>-->
 							<button class="button button--radius button--blue">
-								<i class="fa fa-send"></i> &nbsp; Create
+								<i class="fa fa-send"></i> &nbsp; Add Comment
 							</button>
-
 						</form>
 
 					</div>
