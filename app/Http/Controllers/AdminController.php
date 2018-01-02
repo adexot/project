@@ -36,6 +36,7 @@ class AdminController extends Controller
     public function show($unique_id)
     {
         $data['ticket'] = $this->ticket->getTicketByUniqueId($unique_id);
+        //dd($data['ticket']->category);
         $data['comments'] = $data['ticket']->comments()->orderBy('created_at', 'desc')->get();
         return view('admin.show', $data);
     }

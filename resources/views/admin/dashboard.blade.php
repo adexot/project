@@ -72,19 +72,22 @@
 					</div>
 
 					<div class="card__content">
+
 						<table class="table">
-							<thead class="table__head">
-								<tr>
-									<th class="table__sort--asc" sortable="true">#</th>
-									<th class="table__sort--desc" sortable="true">Tracking-ID</th>
-									<th>Title</th>
-									<th>Status</th>
-                  <th>Created</th>
-									<th>Action</th>
-								</tr>
-							</thead>
+							@if(count($tickets) > 0)
+								<thead class="table__head">
+									<tr>
+										<th class="table__sort--asc" sortable="true">#</th>
+										<th class="table__sort--desc" sortable="true">Tracking-ID</th>
+										<th>Title</th>
+										<th>Status</th>
+	                  <th>Created</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+							@endif
 							<tbody class="table__body">
-                                @foreach($tickets as $ticket)
+            	@forelse($tickets as $ticket)
 								<tr>
 									<td>{{$ticket->id}}</td>
                                     <td>{{$ticket->unique_id}}</td>
@@ -95,11 +98,16 @@
 										<a href="/show/{{ $ticket->unique_id }}" class="button button--green">view</a>
 									</td>
 								</tr>
-                                @endforeach
+							@empty
+									</tbody>
+								</table>
+								<p>No Pending Tickets</p>
+            	@endforelse
 							</tbody>
 						</table>
 
 						<div class="card__wrapper">
+						@if(count($tickets) > 0)
 							<ul class="pager pager--radius">
 								<li>
 									<a href="javascript:void(0)" class="pager__page">Previous</a>
@@ -123,6 +131,7 @@
 									<a href="javascript:void(0)" class="pager__page">Next</a>
 								</li>
 							</ul>
+						@endif
 						</div>
 
 					</div>
