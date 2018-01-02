@@ -25,7 +25,7 @@
 			<div class="header__account account account--has-login">
 				<div class="account__wrapper">
 					<img class="account__img" src="./images/irfan-maulana.jpg" />
-					<span class="account__name">Irfan</span>
+					<span class="account__name">{{ Auth::user()->name }}</span>
 				</div>
 				<i class="account__arrow fa fa-angle-down js--show-dropdown-menu"></i>
 
@@ -35,7 +35,15 @@
 							<a href="#profil">Profile</a>
 						</li>
 						<li class="account__menu-item">
-							<a href="#logout">Logout</a>
+							<a href="{{ route('logout') }}"
+									onclick="event.preventDefault();
+													 document.getElementById('logout-form').submit();">
+									Logout
+							</a>
+
+							<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+									{{ csrf_field() }}
+							</form>
 						</li>
 					</ul>
 				</div>
@@ -82,7 +90,7 @@
 
 			<div class="footer__wrapper">
 
-				
+
 
 				<ul class="footer__list">
 					<li class="footer__icon footer__icon--facebook">

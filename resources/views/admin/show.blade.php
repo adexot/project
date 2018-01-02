@@ -1,9 +1,9 @@
 @extends('layout.admin_base') @section('content')
 <article class="main__content content">
 	<div class="content__wrapper">
-		@if(isset($message))
+		@if(session('message'))
 			<blockquote>
-				{{ $message }}
+				{{ session('message') }}
 			</blockquote>
 		@endif
 		<div class="grid__row">
