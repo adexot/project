@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Ticket;
 use Illuminate\Http\Request;
+use Redirect;
 use App\Repositories\TicketRepository;
 
 
@@ -35,25 +36,38 @@ class AdminController extends Controller
     public function show($unique_id)
     {
         $data['ticket'] = $this->ticket->getTicketByUniqueId($unique_id);
+        $data['comments'] = $data['ticket']->comments()->orderBy('created_at', 'desc')->get();
         return view('admin.show', $data);
     }
 
 
     public function pending()
     {
-        $ticket = Ticket::with('comments')->where('state_id',1)->get();
         return view('admin.show', compact('ticket'));
     }
 
     public function closed()
     {
-        $ticket = Ticket::with('comments')->where('state_id',3)->get();
         return view('admin.show', compact('ticket'));
     }
 
     public function opened()
     {
-        $ticket = Ticket::with('comments')->where('state_id',2)->get();
         return view('admin.show', compact('ticket'));
+    }
+
+    public function addComment(Request $request)
+    {
+      $comment = $this->ticket->addComment($request->all());
+      return redirect()->back()->with('message', 'Comment Added Successfully.');
+    }
+
+    public function markResponse(Request $request)
+    {
+      $resp = $this->ticket->addResponse(['ticket_id' => $request->ticket_id, 'comment_id' => $request->comment_id]);
+      if($resp){
+        return redirect()->back()->with('message', 'Comment marked as Response Successfully.');
+      }
+
     }
 }

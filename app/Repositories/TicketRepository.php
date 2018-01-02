@@ -37,7 +37,7 @@ class TicketRepository {
 
   public function getTicketByUniqueId($unique_id)
   {
-    $ticket = Ticket::with('comments')->where('unique_id',$unique_id)->firstOrFail();
+    $ticket = Ticket::with('comments')->where('unique_id', $unique_id)->firstOrFail();
     return $ticket;
   }
 
@@ -51,6 +51,22 @@ class TicketRepository {
     return $data;
   }
 
+  public function addComment($data)
+  {
+    $ticket = Ticket::where('id', $data['ticket_id'])->with('comments')->first();
+    return $ticket->comments()->create([
+      'ticket_id' => $data['ticket_id'],
+      'message' => $data['message'],
+    ]);
+  }
+
+  public function addResponse($data)
+  {
+    $ticket = Ticket::where('id', $data['ticket_id'])->first();
+    $response = $ticket->response()->where('ticket_id', $data['ticket_id'])->update($data);
+    if($response == 0) $response = $ticket->response()->where('ticket_id', $data['ticket_id'])->create($data);
+    return $response;
+  }
 
 
   private function genUuid($length = 36)

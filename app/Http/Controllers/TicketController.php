@@ -18,8 +18,4 @@ class TicketController extends Controller
       return redirect('/ticket/'.$ticket->unique_id);
     }
 
-    public function addComment(Request $request)
-    {
-      
-    }
 }

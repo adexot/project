@@ -31,8 +31,8 @@ class Ticket extends Model
         return $this->hasOne('App\TicketUser', 'id');
     }
 
-    public function responses()
+    public function response()
     {
-        return $this->hasMany(\App\response::class);
+        return $this->hasOne('App\Response', 'ticket_id');
     }
 }

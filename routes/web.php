@@ -2,8 +2,10 @@
 
 // Admin routes
 Route::get('/admin', 'AdminController@index');
+Route::post('/admin/addResponse', 'AdminController@markResponse');
 Route::get('/show/{id}', 'AdminController@show');
 Route::post('/show/{id}', 'AdminController@addComment');
+Route::post('/addComent', 'TicketController@addComment');
 
 
 // Client routes

@@ -1,6 +1,11 @@
 @extends('layout.admin_base') @section('content')
 <article class="main__content content">
 	<div class="content__wrapper">
+		@if(isset($message))
+			<blockquote>
+				{{ $message }}
+			</blockquote>
+		@endif
 		<div class="grid__row">
 
 			<div class="grid__col-12 card__wrapper">
@@ -62,7 +67,8 @@
 					</div>
 				</div> <br/></br/>
 				<div class="card__title"> Comments</div>
-				@forelse ($ticket->comments as $key => $comment)
+
+				@forelse ($comments as $key => $comment)
 					<div class="card bordered m-t-20">
 						<div class="card__header">
 							<table class="">
@@ -89,6 +95,20 @@
 						<div class="card__content">
 							{{ $comment->message }}
 						</div>
+
+						<div class="card__footer">
+							<form class="" action="/admin/addResponse" method="post">
+								{{ csrf_field() }}
+								<input type="hidden" name="ticket_id" value="{{ $ticket->id }}">
+								<input type="hidden" name="comment_id" value="{{ $comment->id }}">
+								@if(isset($ticket->response->comment_id) && $ticket->response->comment_id  == $comment->id)
+									<b>Marked As Response</b>
+								@else
+									<button type="submit" class="button button--blue" name="addResponse">Mark as response</button>
+								@endif
+							</form>
+						</div>
+
 					</div>
 
 				@empty
@@ -98,15 +118,16 @@
 			<div class="grid__col-12 card__wrapper">
 				<div class="card card--gray">
 					<div class="card__header">
-						<div class="card__title">Add Response</div>
+						<div class="card__title">Add Comment</div>
 					</div>
 					<div class="card__content">
 
 
-						<form class="form" action="">
+						<form class="form" action="" method="post">
 							{{ csrf_field() }}
+							<input type="hidden" name="ticket_id" value="{{ $ticket->id }}">
 							<!--<input class="textfield textfield--shadow" placeholder="Tickets Title" />-->
-							<textarea class="textfield textfield--shadow" id="textarea-1" rows="3" placeholder="Ticket Response"></textarea>
+							<textarea class="textfield textfield--shadow" id="textarea-1" rows="3" name="message" placeholder="Ticket Response"></textarea>
 							<!--<div class="form__group">
 								<input class="textfield textfield--shadow" placeholder="Email Assignee" />
 								<div class="form__icon form__icon--radius-right">
