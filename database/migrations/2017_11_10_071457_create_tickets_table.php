@@ -17,12 +17,11 @@ class CreateTicketsTable extends Migration
             $table->increments('id');
             $table->uuid('unique_id');
             $table->string('title', 200);
-            $table->unsignedInteger('user_id');
             $table->text('description');
-            //$table->unsignedInteger('state_id');
+            $table->unsignedInteger('state_id');
             $table->unsignedInteger('category_id');
             $table->timestamps();
-            //$table->foreign('state_id')->references('id')->on('states');
+            $table->foreign('state_id')->references('id')->on('states');
             $table->foreign('category_id')->references('id')->on('categories');
         });
     }

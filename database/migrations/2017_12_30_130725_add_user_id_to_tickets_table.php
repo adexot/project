@@ -14,8 +14,9 @@ class AddUserIdToTicketsTable extends Migration
     public function up()
     {
         Schema::table('tickets', function(Blueprint $table) {
-          //$table->smallInteger('user_id', 10)->after('title');
-          //$table->primaryKey('id');
+          $table->unsignedInteger('user_id')->after('title');
+          $table->dropForeign('tickets_state_id_foreign');
+          $table->dropColumn('state_id');
         });
     }
 
