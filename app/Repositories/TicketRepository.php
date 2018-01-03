@@ -54,6 +54,7 @@ class TicketRepository {
   public function addComment($data)
   {
     $ticket = Ticket::where('id', $data['ticket_id'])->with('comments')->first();
+    // Email is sent to the user as soon as this comment is created
     return $ticket->comments()->create([
       'ticket_id' => $data['ticket_id'],
       'message' => $data['message'],
