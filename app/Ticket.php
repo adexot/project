@@ -18,7 +18,7 @@ class Ticket extends Model
 
     public function category()
     {
-      return $this->hasOne('App\Category', 'id');
+      return $this->belongsTo('App\Category');
     }
 
     public function comments()
@@ -28,11 +28,11 @@ class Ticket extends Model
 
     public function user()
     {
-        return $this->hasOne('App\TicketUser', 'id');
+        return $this->belongsTo('App\TicketUser');
     }
 
     public function response()
     {
-        return $this->hasOne('App\Response', 'ticket_id');
+        return $this->hasOne('App\Response');
     }
 }

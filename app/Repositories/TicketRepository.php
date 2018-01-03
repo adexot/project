@@ -37,7 +37,7 @@ class TicketRepository {
 
   public function getTicketByUniqueId($unique_id)
   {
-    $ticket = Ticket::with('comments')->where('unique_id', $unique_id)->firstOrFail();
+    $ticket = Ticket::where('unique_id', $unique_id)->firstOrFail();
     return $ticket;
   }
 
